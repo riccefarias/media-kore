@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Post {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  column    Column
+  order     Int
+
+  // Conteúdo base
+  titulo        String
+  formato       Formato
+  angulo        String
+  vertical      String
+  descricao     String?
+  legenda       String?
+  hashtags      String[]
+  usa_modelo    String?
+  motivo_modelo String?
+
+  // Foto
+  image_prompt    String?
+  elementos_texto Json?
+  layout          String?
+
+  // Carrossel
+  slides Json?
+
+  // Vídeo
+  roteiro_completo String?
+  cenas            Json?
+
+  // Assets gerados
+  asset_urls String[]
+  video_url  String?
+
+  // Publicação
+  scheduled_at      DateTime?
+  published_at      DateTime?
+  instagram_post_id String?
+}
+
+enum Column {
+  BACKLOG
+  WRITE
+  PRE_APPROVED
+  IMAGES
+  RENDERING
+  VIDEO_REVIEW
+  APPROVED
+  TO_POST
+  DONE
+}
+
+enum Formato {
+  foto
+  carrossel
+  video
+}
