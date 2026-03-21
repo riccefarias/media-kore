@@ -51,6 +51,20 @@ export default function KanbanCard({ post, index, onClick }: Props) {
           {post.usa_modelo && post.usa_modelo !== "nenhum" && (
             <p className="mt-1.5 text-[10px] text-blue-400">{post.usa_modelo}</p>
           )}
+          {post.asset_urls.length > 0 && (
+            <div className="mt-2 rounded-md overflow-hidden aspect-video bg-white/5">
+              <img
+                src={post.asset_urls[0]}
+                alt=""
+                className="w-full h-full object-cover"
+              />
+            </div>
+          )}
+          {post.video_url && post.asset_urls.length === 0 && (
+            <div className="mt-2 flex items-center gap-1.5 text-[10px] text-green-400">
+              <span>▶</span> Vídeo anexado
+            </div>
+          )}
         </div>
       )}
     </Draggable>

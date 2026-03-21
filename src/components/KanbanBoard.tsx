@@ -165,6 +165,7 @@ export default function KanbanBoard() {
           post={selectedPost}
           onClose={() => setSelectedPost(null)}
           onDeleted={fetchPosts}
+          onUpdated={fetchPosts}
         />
       )}
     </div>
